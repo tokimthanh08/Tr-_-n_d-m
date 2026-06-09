@@ -6,416 +6,108 @@
 <title>🍼 Lịch Ăn Dặm Của Bé</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
-
   :root {
-    --cream: #FFF8F0;
-    --warm-white: #FFFDF9;
-    --today-bg: #FFF3E0;
-    --today-border: #F4A261;
-    --yesterday-bg: #F0F9F4;
-    --yesterday-border: #52B788;
-    --dayb4-bg: #F0F4FF;
-    --dayb4-border: #7B9CDB;
-    --cu-color: #E76F51;
-    --cu-bg: #FFF0EB;
-    --rau-color: #2D6A4F;
-    --rau-bg: #EBF7F1;
-    --main-color: #5C4033;
-    --main-bg: #FDF3EE;
-    --text: #3D2B1F;
-    --muted: #9B8B80;
-    --shadow: 0 4px 20px rgba(0,0,0,0.08);
-    --radius: 18px;
+    --cream:#FFF8F0;--warm-white:#FFFDF9;--today-bg:#FFF3E0;--today-border:#F4A261;
+    --yesterday-bg:#F0F9F4;--yesterday-border:#52B788;--dayb4-bg:#F0F4FF;--dayb4-border:#7B9CDB;
+    --cu-color:#E76F51;--cu-bg:#FFF0EB;--rau-color:#2D6A4F;--rau-bg:#EBF7F1;
+    --main-color:#5C4033;--main-bg:#FDF3EE;--text:#3D2B1F;--muted:#9B8B80;
+    --shadow:0 4px 20px rgba(0,0,0,0.08);--radius:18px;
   }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: 'Nunito', sans-serif;
-    background: var(--cream);
-    color: var(--text);
-    min-height: 100vh;
-  }
-
-  /* HEADER */
-  header {
-    background: linear-gradient(135deg, #F4A261 0%, #E76F51 50%, #F4A261 100%);
-    padding: 28px 20px 22px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  header::before {
-    content: '🥕🥦🍠🐟🥦🥕🍠';
-    position: absolute;
-    top: 8px; left: 0; right: 0;
-    font-size: 20px;
-    opacity: 0.25;
-    letter-spacing: 8px;
-  }
-  header h1 {
-    font-size: 2rem;
-    font-weight: 900;
-    color: white;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    position: relative;
-  }
-  header p {
-    color: rgba(255,255,255,0.9);
-    font-size: 0.9rem;
-    margin-top: 4px;
-    font-weight: 600;
-    position: relative;
-  }
-
-  /* DATE DISPLAY */
-  .date-info {
-    text-align: center;
-    padding: 14px;
-    font-size: 0.85rem;
-    color: var(--muted);
-    font-weight: 600;
-  }
-
-  /* MAIN GRID */
-  .main-wrap { padding: 0 12px 20px; }
-
-  .days-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1.15fr;
-    gap: 10px;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  /* DAY CARD */
-  .day-card {
-    background: var(--warm-white);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    overflow: hidden;
-    border: 2px solid transparent;
-    transition: transform 0.2s;
-  }
-  .day-card:hover { transform: translateY(-2px); }
-
-  .day-card.today {
-    border-color: var(--today-border);
-    background: var(--today-bg);
-    box-shadow: 0 6px 28px rgba(244,162,97,0.25);
-  }
-  .day-card.yesterday {
-    border-color: var(--yesterday-border);
-    background: var(--yesterday-bg);
-  }
-  .day-card.dayb4 {
-    border-color: var(--dayb4-border);
-    background: var(--dayb4-bg);
-  }
-
-  .day-header {
-    padding: 14px 14px 10px;
-    text-align: center;
-    border-bottom: 1.5px solid rgba(0,0,0,0.06);
-  }
-  .day-label {
-    font-size: 0.7rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    opacity: 0.6;
-    margin-bottom: 2px;
-  }
-  .day-title {
-    font-size: 1.05rem;
-    font-weight: 900;
-  }
-  .today .day-title { color: #C25500; }
-  .yesterday .day-title { color: #1A5C3A; }
-  .dayb4 .day-title { color: #2A4A8C; }
-
-  .day-date {
-    font-size: 0.75rem;
-    color: var(--muted);
-    font-weight: 600;
-    margin-top: 2px;
-  }
-
-  /* MEAL SECTIONS */
-  .meal-section {
-    padding: 10px;
-  }
-
-  .meal-title {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 0.78rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 7px 10px;
-    border-radius: 10px;
-    margin-bottom: 8px;
-  }
-  .meal-title.sang { background: #FFF3C4; color: #8B6914; }
-  .meal-title.chieu { background: #E8D5FF; color: #5E3A8C; }
-
-  /* FOOD ROWS */
-  .food-row {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-bottom: 6px;
-  }
-
-  .food-icon {
-    width: 28px;
-    height: 28px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    flex-shrink: 0;
-  }
-  .food-icon.cu { background: var(--cu-bg); }
-  .food-icon.rau { background: var(--rau-bg); }
-  .food-icon.main { background: var(--main-bg); }
-
-  .food-label {
-    font-size: 0.65rem;
-    font-weight: 800;
-    color: var(--muted);
-    width: 22px;
-    flex-shrink: 0;
-    text-transform: uppercase;
-  }
-
-  /* SELECT for today */
-  .today .food-select {
-    flex: 1;
-    padding: 5px 8px;
-    border-radius: 8px;
-    border: 1.5px solid rgba(244,162,97,0.4);
-    background: white;
-    font-family: 'Nunito', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: var(--text);
-    cursor: pointer;
-    outline: none;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23999'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 8px center;
-    padding-right: 22px;
-  }
-  .today .food-select:focus {
-    border-color: var(--today-border);
-    box-shadow: 0 0 0 3px rgba(244,162,97,0.2);
-  }
-
-  /* Display for past days */
-  .food-display {
-    flex: 1;
-    padding: 5px 8px;
-    border-radius: 8px;
-    background: rgba(255,255,255,0.7);
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: var(--text);
-    min-height: 30px;
-    display: flex;
-    align-items: center;
-  }
-  .food-display.empty {
-    color: var(--muted);
-    font-style: italic;
-    font-weight: 400;
-    font-size: 0.72rem;
-  }
-
-  .divider {
-    border: none;
-    border-top: 1.5px dashed rgba(0,0,0,0.08);
-    margin: 8px 0;
-  }
-
-  /* SAVE BUTTON */
-  .save-wrap {
-    padding: 0 10px 10px;
-  }
-  .btn-save {
-    width: 100%;
-    padding: 10px;
-    background: linear-gradient(135deg, #F4A261, #E76F51);
-    color: white;
-    border: none;
-    border-radius: 12px;
-    font-family: 'Nunito', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 800;
-    cursor: pointer;
-    transition: all 0.2s;
-    box-shadow: 0 3px 12px rgba(231,111,81,0.35);
-  }
-  .btn-save:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 5px 16px rgba(231,111,81,0.45);
-  }
-  .btn-save:active { transform: scale(0.98); }
-
-  /* SAVED TOAST */
-  .toast {
-    position: fixed;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%) translateY(80px);
-    background: #2D6A4F;
-    color: white;
-    padding: 12px 24px;
-    border-radius: 50px;
-    font-weight: 700;
-    font-size: 0.85rem;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-    transition: transform 0.3s ease;
-    z-index: 999;
-  }
-  .toast.show { transform: translateX(-50%) translateY(0); }
-
-  /* MANAGE PANEL */
-  .manage-wrap {
-    max-width: 1100px;
-    margin: 0 auto 24px;
-    padding: 0 12px;
-  }
-  .manage-toggle {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: white;
-    border: 2px solid #E8E0D8;
-    border-radius: 14px;
-    padding: 10px 16px;
-    cursor: pointer;
-    font-family: 'Nunito', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 800;
-    color: var(--text);
-    width: 100%;
-    text-align: left;
-    transition: all 0.2s;
-  }
-  .manage-toggle:hover { border-color: var(--today-border); background: var(--today-bg); }
-
-  .manage-panel {
-    display: none;
-    background: white;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    padding: 16px;
-    margin-top: 8px;
-  }
-  .manage-panel.open { display: block; }
-
-  .manage-section { margin-bottom: 16px; }
-  .manage-section h3 {
-    font-size: 0.8rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .manage-section h3.cu { color: var(--cu-color); }
-  .manage-section h3.rau { color: var(--rau-color); }
-  .manage-section h3.main-food { color: var(--main-color); }
-
-  .tags-wrap {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 8px;
-  }
-  .tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-size: 0.78rem;
-    font-weight: 700;
-  }
-  .tag.cu { background: var(--cu-bg); color: var(--cu-color); }
-  .tag.rau { background: var(--rau-bg); color: var(--rau-color); }
-  .tag.main-food { background: var(--main-bg); color: var(--main-color); }
-
-  .tag-remove {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 13px;
-    line-height: 1;
-    opacity: 0.6;
-    padding: 0;
-    color: inherit;
-  }
-  .tag-remove:hover { opacity: 1; }
-
-  .add-row {
-    display: flex;
-    gap: 6px;
-  }
-  .add-row input {
-    flex: 1;
-    padding: 6px 10px;
-    border-radius: 10px;
-    border: 1.5px solid #E8E0D8;
-    font-family: 'Nunito', sans-serif;
-    font-size: 0.82rem;
-    font-weight: 600;
-    outline: none;
-  }
-  .add-row input:focus { border-color: var(--today-border); }
-  .btn-add {
-    padding: 6px 14px;
-    border-radius: 10px;
-    border: none;
-    font-family: 'Nunito', sans-serif;
-    font-size: 0.82rem;
-    font-weight: 800;
-    cursor: pointer;
-    color: white;
-    transition: opacity 0.2s;
-  }
-  .btn-add:hover { opacity: 0.85; }
-  .btn-add.cu { background: var(--cu-color); }
-  .btn-add.rau { background: var(--rau-color); }
-  .btn-add.main-food { background: var(--main-color); }
-
-  /* RESPONSIVE */
-  @media (max-width: 640px) {
-    .days-grid { grid-template-columns: 1fr; gap: 12px; }
-    header h1 { font-size: 1.5rem; }
-  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;}
+  header{background:linear-gradient(135deg,#F4A261 0%,#E76F51 50%,#F4A261 100%);padding:28px 20px 22px;text-align:center;position:relative;overflow:hidden;}
+  header::before{content:'🥕🥦🍠🐟🥦🥕🍠';position:absolute;top:8px;left:0;right:0;font-size:20px;opacity:0.25;letter-spacing:8px;}
+  header h1{font-size:2rem;font-weight:900;color:white;text-shadow:0 2px 8px rgba(0,0,0,0.15);position:relative;}
+  header p{color:rgba(255,255,255,0.9);font-size:0.9rem;margin-top:4px;font-weight:600;position:relative;}
+  .sync-bar{display:flex;align-items:center;justify-content:center;gap:8px;padding:8px 16px;font-size:0.78rem;font-weight:700;}
+  .sync-dot{width:8px;height:8px;border-radius:50%;background:#ccc;transition:background 0.3s;}
+  .sync-dot.connected{background:#52B788;box-shadow:0 0 6px #52B78888;}
+  .sync-dot.syncing{background:#F4A261;animation:pulse 1s infinite;}
+  .sync-dot.error{background:#E63946;}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+  .sync-label{color:var(--muted);}
+  .date-info{text-align:center;padding:4px 14px 14px;font-size:0.85rem;color:var(--muted);font-weight:600;}
+  .main-wrap{padding:0 12px 20px;}
+  .days-grid{display:grid;grid-template-columns:1fr 1fr 1.15fr;gap:10px;max-width:1100px;margin:0 auto;}
+  .day-card{background:var(--warm-white);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;border:2px solid transparent;transition:transform 0.2s;}
+  .day-card:hover{transform:translateY(-2px);}
+  .day-card.today{border-color:var(--today-border);background:var(--today-bg);box-shadow:0 6px 28px rgba(244,162,97,0.25);}
+  .day-card.yesterday{border-color:var(--yesterday-border);background:var(--yesterday-bg);}
+  .day-card.dayb4{border-color:var(--dayb4-border);background:var(--dayb4-bg);}
+  .day-header{padding:14px 14px 10px;text-align:center;border-bottom:1.5px solid rgba(0,0,0,0.06);}
+  .day-label{font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;opacity:0.6;margin-bottom:2px;}
+  .day-title{font-size:1.05rem;font-weight:900;}
+  .today .day-title{color:#C25500;}.yesterday .day-title{color:#1A5C3A;}.dayb4 .day-title{color:#2A4A8C;}
+  .day-date{font-size:0.75rem;color:var(--muted);font-weight:600;margin-top:2px;}
+  .meal-section{padding:10px;}
+  .meal-title{display:flex;align-items:center;gap:6px;font-size:0.78rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;padding:7px 10px;border-radius:10px;margin-bottom:8px;}
+  .meal-title.sang{background:#FFF3C4;color:#8B6914;}.meal-title.chieu{background:#E8D5FF;color:#5E3A8C;}
+  .food-row{display:flex;align-items:center;gap:6px;margin-bottom:6px;}
+  .food-icon{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+  .food-icon.cu{background:var(--cu-bg);}.food-icon.rau{background:var(--rau-bg);}.food-icon.main{background:var(--main-bg);}
+  .food-label{font-size:0.65rem;font-weight:800;color:var(--muted);width:22px;flex-shrink:0;text-transform:uppercase;}
+  .today .food-select{flex:1;padding:5px 8px;border-radius:8px;border:1.5px solid rgba(244,162,97,0.4);background:white;font-family:'Nunito',sans-serif;font-size:0.8rem;font-weight:700;color:var(--text);cursor:pointer;outline:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23999'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center;padding-right:22px;}
+  .today .food-select:focus{border-color:var(--today-border);box-shadow:0 0 0 3px rgba(244,162,97,0.2);}
+  .food-display{flex:1;padding:5px 8px;border-radius:8px;background:rgba(255,255,255,0.7);font-size:0.8rem;font-weight:700;color:var(--text);min-height:30px;display:flex;align-items:center;}
+  .food-display.empty{color:var(--muted);font-style:italic;font-weight:400;font-size:0.72rem;}
+  .divider{border:none;border-top:1.5px dashed rgba(0,0,0,0.08);margin:8px 0;}
+  .save-wrap{padding:0 10px 10px;}
+  .btn-save{width:100%;padding:10px;background:linear-gradient(135deg,#F4A261,#E76F51);color:white;border:none;border-radius:12px;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;transition:all 0.2s;box-shadow:0 3px 12px rgba(231,111,81,0.35);}
+  .btn-save:hover{transform:translateY(-1px);box-shadow:0 5px 16px rgba(231,111,81,0.45);}
+  .btn-save:active{transform:scale(0.98);}
+  .btn-save:disabled{opacity:0.6;cursor:not-allowed;transform:none;}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:#2D6A4F;color:white;padding:12px 24px;border-radius:50px;font-weight:700;font-size:0.85rem;box-shadow:0 6px 20px rgba(0,0,0,0.2);transition:transform 0.3s ease;z-index:999;}
+  .toast.show{transform:translateX(-50%) translateY(0);}
+  .toast.err{background:#E63946;}
+  .manage-wrap{max-width:1100px;margin:0 auto 24px;padding:0 12px;}
+  .manage-toggle{display:flex;align-items:center;gap:8px;background:white;border:2px solid #E8E0D8;border-radius:14px;padding:10px 16px;cursor:pointer;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:800;color:var(--text);width:100%;text-align:left;transition:all 0.2s;}
+  .manage-toggle:hover{border-color:var(--today-border);background:var(--today-bg);}
+  .manage-panel{display:none;background:white;border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;margin-top:8px;}
+  .manage-panel.open{display:block;}
+  .manage-section{margin-bottom:16px;}
+  .manage-section h3{font-size:0.8rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+  .manage-section h3.cu{color:var(--cu-color);}.manage-section h3.rau{color:var(--rau-color);}.manage-section h3.main-food{color:var(--main-color);}
+  .tags-wrap{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;}
+  .tag{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:20px;font-size:0.78rem;font-weight:700;}
+  .tag.cu{background:var(--cu-bg);color:var(--cu-color);}.tag.rau{background:var(--rau-bg);color:var(--rau-color);}.tag.main-food{background:var(--main-bg);color:var(--main-color);}
+  .tag-remove{background:none;border:none;cursor:pointer;font-size:13px;line-height:1;opacity:0.6;padding:0;color:inherit;}
+  .tag-remove:hover{opacity:1;}
+  .add-row{display:flex;gap:6px;}
+  .add-row input{flex:1;padding:6px 10px;border-radius:10px;border:1.5px solid #E8E0D8;font-family:'Nunito',sans-serif;font-size:0.82rem;font-weight:600;outline:none;}
+  .add-row input:focus{border-color:var(--today-border);}
+  .btn-add{padding:6px 14px;border-radius:10px;border:none;font-family:'Nunito',sans-serif;font-size:0.82rem;font-weight:800;cursor:pointer;color:white;transition:opacity 0.2s;}
+  .btn-add:hover{opacity:0.85;}
+  .btn-add.cu{background:var(--cu-color);}.btn-add.rau{background:var(--rau-color);}.btn-add.main-food{background:var(--main-color);}
+  .loading-overlay{position:fixed;inset:0;background:rgba(255,248,240,0.95);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;gap:12px;}
+  .loading-overlay.hidden{display:none;}
+  .spinner{width:40px;height:40px;border:4px solid #F4A26133;border-top-color:#F4A261;border-radius:50%;animation:spin 0.8s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .loading-overlay p{font-weight:700;color:var(--muted);font-size:0.9rem;}
+  @media(max-width:640px){.days-grid{grid-template-columns:1fr;gap:12px;}header h1{font-size:1.5rem;}}
 </style>
 </head>
 <body>
 
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="spinner"></div>
+  <p>Đang kết nối Firebase...</p>
+</div>
+
 <header>
   <h1>🍼 Lịch Ăn Dặm Của Bé</h1>
-  <p>Theo dõi bữa ăn sáng & chiều mỗi ngày</p>
+  <p>Theo dõi bữa ăn sáng &amp; chiều mỗi ngày</p>
 </header>
 
+<div class="sync-bar">
+  <div class="sync-dot" id="syncDot"></div>
+  <span class="sync-label" id="syncLabel">Đang kết nối...</span>
+</div>
 <div class="date-info" id="dateInfo"></div>
 
 <div class="main-wrap">
   <div class="days-grid">
     <!-- Hôm kia -->
-    <div class="day-card dayb4" id="card-dayb4">
+    <div class="day-card dayb4">
       <div class="day-header">
         <div class="day-label">📅 Ngày</div>
         <div class="day-title">Hôm Kia</div>
@@ -435,7 +127,7 @@
     </div>
 
     <!-- Hôm qua -->
-    <div class="day-card yesterday" id="card-yesterday">
+    <div class="day-card yesterday">
       <div class="day-header">
         <div class="day-label">📅 Ngày</div>
         <div class="day-title">Hôm Qua</div>
@@ -455,7 +147,7 @@
     </div>
 
     <!-- Hôm nay -->
-    <div class="day-card today" id="card-today">
+    <div class="day-card today">
       <div class="day-header">
         <div class="day-label">⭐ Hôm Nay</div>
         <div class="day-title">Hôm Nay</div>
@@ -464,52 +156,34 @@
       <div class="meal-section">
         <div class="meal-title sang">🌅 Buổi Sáng</div>
         <div class="food-row">
-          <div class="food-icon cu">🥕</div>
-          <span class="food-label">Củ</span>
-          <select class="food-select" id="today-sang-cu">
-            <option value="">-- Chọn --</option>
-          </select>
+          <div class="food-icon cu">🥕</div><span class="food-label">Củ</span>
+          <select class="food-select" id="today-sang-cu"><option value="">-- Chọn --</option></select>
         </div>
         <div class="food-row">
-          <div class="food-icon rau">🥬</div>
-          <span class="food-label">Rau</span>
-          <select class="food-select" id="today-sang-rau">
-            <option value="">-- Chọn --</option>
-          </select>
+          <div class="food-icon rau">🥬</div><span class="food-label">Rau</span>
+          <select class="food-select" id="today-sang-rau"><option value="">-- Chọn --</option></select>
         </div>
         <div class="food-row">
-          <div class="food-icon main">🍳</div>
-          <span class="food-label">Chính</span>
-          <select class="food-select" id="today-sang-main">
-            <option value="">-- Chọn --</option>
-          </select>
+          <div class="food-icon main">🍳</div><span class="food-label">Chính</span>
+          <select class="food-select" id="today-sang-main"><option value="">-- Chọn --</option></select>
         </div>
         <hr class="divider">
         <div class="meal-title chieu">🌇 Buổi Chiều</div>
         <div class="food-row">
-          <div class="food-icon cu">🥕</div>
-          <span class="food-label">Củ</span>
-          <select class="food-select" id="today-chieu-cu">
-            <option value="">-- Chọn --</option>
-          </select>
+          <div class="food-icon cu">🥕</div><span class="food-label">Củ</span>
+          <select class="food-select" id="today-chieu-cu"><option value="">-- Chọn --</option></select>
         </div>
         <div class="food-row">
-          <div class="food-icon rau">🥬</div>
-          <span class="food-label">Rau</span>
-          <select class="food-select" id="today-chieu-rau">
-            <option value="">-- Chọn --</option>
-          </select>
+          <div class="food-icon rau">🥬</div><span class="food-label">Rau</span>
+          <select class="food-select" id="today-chieu-rau"><option value="">-- Chọn --</option></select>
         </div>
         <div class="food-row">
-          <div class="food-icon main">🍳</div>
-          <span class="food-label">Chính</span>
-          <select class="food-select" id="today-chieu-main">
-            <option value="">-- Chọn --</option>
-          </select>
+          <div class="food-icon main">🍳</div><span class="food-label">Chính</span>
+          <select class="food-select" id="today-chieu-main"><option value="">-- Chọn --</option></select>
         </div>
       </div>
       <div class="save-wrap">
-        <button class="btn-save" onclick="saveToday()">💾 Lưu hôm nay</button>
+        <button class="btn-save" id="btnSave" onclick="window._saveToday()">💾 Lưu hôm nay</button>
       </div>
     </div>
   </div>
@@ -517,226 +191,250 @@
 
 <!-- MANAGE PANEL -->
 <div class="manage-wrap">
-  <button class="manage-toggle" onclick="toggleManage()">
-    <span>⚙️</span>
-    <span>Quản lý danh sách thực phẩm</span>
+  <button class="manage-toggle" onclick="window._toggleManage()">
+    <span>⚙️</span><span>Quản lý danh sách thực phẩm</span>
     <span id="manage-arrow" style="margin-left:auto">▼</span>
   </button>
   <div class="manage-panel" id="managePanel">
-
-    <!-- Củ -->
     <div class="manage-section">
       <h3 class="cu">🥕 Củ</h3>
       <div class="tags-wrap" id="tags-cu"></div>
       <div class="add-row">
         <input type="text" id="input-cu" placeholder="Thêm củ mới...">
-        <button class="btn-add cu" onclick="addItem('cu')">+ Thêm</button>
+        <button class="btn-add cu" onclick="window._addItem('cu')">+ Thêm</button>
       </div>
     </div>
-
-    <!-- Rau -->
     <div class="manage-section">
       <h3 class="rau">🥬 Rau</h3>
       <div class="tags-wrap" id="tags-rau"></div>
       <div class="add-row">
         <input type="text" id="input-rau" placeholder="Thêm rau mới...">
-        <button class="btn-add rau" onclick="addItem('rau')">+ Thêm</button>
+        <button class="btn-add rau" onclick="window._addItem('rau')">+ Thêm</button>
       </div>
     </div>
-
-    <!-- Đồ ăn chính -->
     <div class="manage-section">
       <h3 class="main-food">🍳 Đồ Ăn Chính</h3>
       <div class="tags-wrap" id="tags-main"></div>
       <div class="add-row">
         <input type="text" id="input-main" placeholder="Thêm đồ ăn chính mới...">
-        <button class="btn-add main-food" onclick="addItem('main')">+ Thêm</button>
+        <button class="btn-add main-food" onclick="window._addItem('main')">+ Thêm</button>
       </div>
     </div>
-
   </div>
 </div>
 
-<div class="toast" id="toast">✅ Đã lưu!</div>
+<div class="toast" id="toast"></div>
 
-<script>
-// ============ DEFAULT DATA ============
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, doc, setDoc, getDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAN9neF3OWM4dJRV7shviTN8rBXPInTidc",
+  authDomain: "lich-an-dam.firebaseapp.com",
+  projectId: "lich-an-dam",
+  storageBucket: "lich-an-dam.firebasestorage.app",
+  messagingSenderId: "768199239985",
+  appId: "1:768199239985:web:58288715db1a55adaca810"
+};
+
+const app = initializeApp(firebaseConfig);
+const db  = getFirestore(app);
+
 const DEFAULTS = {
-  cu: ['Củ dền','Khoai tây','Khoai môn','Khoai tím','Khoai lang','Bí đỏ','Bí đao','Su hào'],
-  rau: ['Rau dền','Rau lang','Rau mồng tơi','Rau bồ ngọt','Rau ngót','Cải bó xôi','Cải thìa'],
+  cu:   ['Củ dền','Khoai tây','Khoai môn','Khoai tím','Khoai lang','Bí đỏ','Bí đao','Su hào'],
+  rau:  ['Rau dền','Rau lang','Rau mồng tơi','Rau bồ ngọt','Rau ngót','Cải bó xôi','Cải thìa'],
   main: ['Cá hồi','Cá lóc','Thịt bò','Thịt heo','Tôm','Gà','Gà ác','Ếch','Lươn']
 };
 
-// ============ STORAGE HELPERS ============
-function saveLS(key, val) { localStorage.setItem(key, JSON.stringify(val)); }
-function loadLS(key, def) {
-  const v = localStorage.getItem(key);
-  return v !== null ? JSON.parse(v) : def;
-}
-
-// ============ DATE HELPERS ============
-function dateKey(d) {
-  return d.toISOString().slice(0, 10); // YYYY-MM-DD
-}
-function formatDate(d) {
-  const days = ['CN','Thứ 2','Thứ 3','Thứ 4','Thứ 5','Thứ 6','Thứ 7'];
+// Dates
+function dateKey(d){ return d.toISOString().slice(0,10); }
+function formatDate(d){
+  const days=['CN','Thứ 2','Thứ 3','Thứ 4','Thứ 5','Thứ 6','Thứ 7'];
   return `${days[d.getDay()]}, ${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()}`;
 }
-function offsetDate(offset) {
-  const d = new Date();
-  d.setDate(d.getDate() + offset);
-  return d;
-}
+function offsetDate(n){ const d=new Date(); d.setDate(d.getDate()+n); return d; }
+const todayDate=offsetDate(0), yestDate=offsetDate(-1), dayb4Date=offsetDate(-2);
+const todayKey=dateKey(todayDate), yestKey=dateKey(yestDate), dayb4Key=dateKey(dayb4Date);
 
-// ============ STATE ============
-let lists = loadLS('baby_lists', DEFAULTS);
-const todayDate   = offsetDate(0);
-const yestDate    = offsetDate(-1);
-const dayb4Date   = offsetDate(-2);
-const todayKey    = dateKey(todayDate);
-const yestKey     = dateKey(yestDate);
-const dayb4Key    = dateKey(dayb4Date);
-
-// ============ INIT ============
-document.getElementById('date-today').textContent = formatDate(todayDate);
+document.getElementById('date-today').textContent     = formatDate(todayDate);
 document.getElementById('date-yesterday').textContent = formatDate(yestDate);
-document.getElementById('date-dayb4').textContent = formatDate(dayb4Date);
+document.getElementById('date-dayb4').textContent     = formatDate(dayb4Date);
 document.getElementById('dateInfo').textContent =
   `Ngày ${todayDate.getDate()} tháng ${todayDate.getMonth()+1} năm ${todayDate.getFullYear()}`;
 
-function init() {
-  renderTags();
-  buildSelects();
-  loadTodaySelects();
-  renderPastDay('yesterday', yestKey);
-  renderPastDay('dayb4', dayb4Key);
+let lists = {...DEFAULTS};
+
+function setSyncStatus(state, label){
+  document.getElementById('syncDot').className = 'sync-dot '+state;
+  document.getElementById('syncLabel').textContent = label;
 }
 
-// ============ TAGS / MANAGE LIST ============
-function renderTags() {
-  ['cu','rau','main'].forEach(type => {
+function showToast(msg, isErr=false){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast'+(isErr?' err':'');
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 3000);
+}
+
+// Render tags
+function renderTags(){
+  ['cu','rau','main'].forEach(type=>{
     const wrap = document.getElementById(`tags-${type}`);
-    wrap.innerHTML = '';
-    lists[type].forEach((item, i) => {
-      const tag = document.createElement('span');
-      tag.className = `tag ${type === 'main' ? 'main-food' : type}`;
-      tag.innerHTML = `${item}<button class="tag-remove" onclick="removeItem('${type}',${i})" title="Xoá">✕</button>`;
+    wrap.innerHTML='';
+    lists[type].forEach((item,i)=>{
+      const tag=document.createElement('span');
+      tag.className=`tag ${type==='main'?'main-food':type}`;
+      tag.innerHTML=`${item}<button class="tag-remove" onclick="window._removeItem('${type}',${i})">✕</button>`;
       wrap.appendChild(tag);
     });
   });
 }
 
-function addItem(type) {
-  const inp = document.getElementById(`input-${type}`);
-  const val = inp.value.trim();
-  if (!val) return;
-  if (!lists[type].includes(val)) {
-    lists[type].push(val);
-    saveLS('baby_lists', lists);
-    renderTags();
-    buildSelects();
-  }
-  inp.value = '';
+// Build selects
+function buildSelects(){
+  ['sang','chieu'].forEach(meal=>{
+    [['cu',lists.cu],['rau',lists.rau],['main',lists.main]].forEach(([type,items])=>{
+      const sel=document.getElementById(`today-${meal}-${type}`);
+      const cur=sel.value;
+      sel.innerHTML=`<option value="">-- Chọn --</option>`;
+      items.forEach(item=>{
+        const opt=document.createElement('option');
+        opt.value=item; opt.textContent=item;
+        sel.appendChild(opt);
+      });
+      if(cur) sel.value=cur;
+    });
+  });
 }
 
-function removeItem(type, idx) {
-  lists[type].splice(idx, 1);
-  saveLS('baby_lists', lists);
-  renderTags();
-  buildSelects();
+// Firestore refs
+const listsRef = doc(db,'config','lists');
+const mealRef  = key => doc(db,'meals',key);
+
+// Load & watch lists
+async function loadLists(){
+  const snap = await getDoc(listsRef);
+  if(snap.exists()) lists=snap.data();
+  else await setDoc(listsRef, DEFAULTS);
+  renderTags(); buildSelects();
+}
+onSnapshot(listsRef, snap=>{
+  if(snap.exists()){ lists=snap.data(); renderTags(); buildSelects(); }
+});
+
+// Load today meal
+async function loadTodayMeal(){
+  const snap = await getDoc(mealRef(todayKey));
+  if(!snap.exists()) return;
+  const data = snap.data();
+  ['sang','chieu'].forEach(meal=>{
+    ['cu','rau','main'].forEach(type=>{
+      const sel=document.getElementById(`today-${meal}-${type}`);
+      if(data[meal]&&data[meal][type]) sel.value=data[meal][type];
+    });
+  });
 }
 
-// enter key on inputs
-['cu','rau','main'].forEach(t => {
-  document.getElementById(`input-${t}`).addEventListener('keydown', e => {
-    if (e.key === 'Enter') addItem(t);
+// Realtime today (if wife saves, husband sees)
+onSnapshot(mealRef(todayKey), snap=>{
+  if(!snap.exists()) return;
+  const data=snap.data();
+  ['sang','chieu'].forEach(meal=>{
+    ['cu','rau','main'].forEach(type=>{
+      const sel=document.getElementById(`today-${meal}-${type}`);
+      if(data[meal]&&data[meal][type]&&sel.value!==data[meal][type]) sel.value=data[meal][type];
+    });
   });
 });
 
-// ============ BUILD SELECTS ============
-function buildSelects() {
-  const meals = ['sang','chieu'];
-  const types = {cu: lists.cu, rau: lists.rau, main: lists.main};
-  meals.forEach(meal => {
-    Object.entries(types).forEach(([type, items]) => {
-      const sel = document.getElementById(`today-${meal}-${type}`);
-      const cur = sel.value;
-      sel.innerHTML = `<option value="">-- Chọn --</option>`;
-      items.forEach(item => {
-        const opt = document.createElement('option');
-        opt.value = item; opt.textContent = item;
-        sel.appendChild(opt);
-      });
-      if (cur) sel.value = cur;
-    });
-  });
-}
-
-// ============ LOAD TODAY ============
-function loadTodaySelects() {
-  const saved = loadLS(`meal_${todayKey}`, null);
-  if (!saved) return;
-  ['sang','chieu'].forEach(meal => {
-    ['cu','rau','main'].forEach(type => {
-      const sel = document.getElementById(`today-${meal}-${type}`);
-      if (saved[meal] && saved[meal][type]) sel.value = saved[meal][type];
-    });
-  });
-}
-
-// ============ SAVE TODAY ============
-function saveToday() {
-  const data = {};
-  ['sang','chieu'].forEach(meal => {
-    data[meal] = {};
-    ['cu','rau','main'].forEach(type => {
-      data[meal][type] = document.getElementById(`today-${meal}-${type}`).value;
-    });
-  });
-  saveLS(`meal_${todayKey}`, data);
-  showToast('✅ Đã lưu hôm nay!');
-  renderPastDay('yesterday', yestKey);
-  renderPastDay('dayb4', dayb4Key);
-}
-
-// ============ RENDER PAST DAYS ============
-const ICONS = {cu:'🥕', rau:'🥬', main:'🍳'};
-const LABELS = {cu:'Củ', rau:'Rau', main:'Chính'};
-
-function renderPastDay(day, key) {
-  const data = loadLS(`meal_${key}`, null);
-  ['sang','chieu'].forEach(meal => {
-    ['cu','rau','main'].forEach(type => {
-      const el = document.getElementById(`display-${day}-${meal}-${type}`);
-      const val = data && data[meal] && data[meal][type];
-      el.className = 'food-row';
-      el.innerHTML = `
-        <div class="food-icon ${type === 'main' ? 'main' : type}">${ICONS[type]}</div>
+// Past days display
+const ICONS={cu:'🥕',rau:'🥬',main:'🍳'};
+const LABELS={cu:'Củ',rau:'Rau',main:'Chính'};
+function renderPastDay(dayId, data){
+  ['sang','chieu'].forEach(meal=>{
+    ['cu','rau','main'].forEach(type=>{
+      const el=document.getElementById(`display-${dayId}-${meal}-${type}`);
+      const val=data&&data[meal]&&data[meal][type];
+      el.className='food-row';
+      el.innerHTML=`
+        <div class="food-icon ${type==='main'?'main':type}">${ICONS[type]}</div>
         <span class="food-label">${LABELS[type]}</span>
-        <div class="food-display ${val ? '' : 'empty'}">${val || 'Chưa có'}</div>
-      `;
+        <div class="food-display ${val?'':'empty'}">${val||'Chưa có'}</div>`;
     });
   });
 }
-
-// ============ TOAST ============
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2500);
+function watchPastDay(dayId, key){
+  onSnapshot(mealRef(key), snap=>renderPastDay(dayId, snap.exists()?snap.data():null));
 }
 
-// ============ MANAGE TOGGLE ============
-function toggleManage() {
-  const panel = document.getElementById('managePanel');
-  const arrow = document.getElementById('manage-arrow');
+// Save today
+window._saveToday = async function(){
+  const btn=document.getElementById('btnSave');
+  btn.disabled=true; btn.textContent='⏳ Đang lưu...';
+  setSyncStatus('syncing','Đang lưu...');
+  const data={};
+  ['sang','chieu'].forEach(meal=>{
+    data[meal]={};
+    ['cu','rau','main'].forEach(type=>{
+      data[meal][type]=document.getElementById(`today-${meal}-${type}`).value;
+    });
+  });
+  try{
+    await setDoc(mealRef(todayKey), data);
+    showToast('✅ Đã lưu! Vợ/chồng thấy ngay~');
+    setSyncStatus('connected','Đã đồng bộ · realtime');
+  } catch(e){
+    showToast('❌ Lỗi! Kiểm tra kết nối mạng.',true);
+    setSyncStatus('error','Lỗi kết nối');
+  }
+  btn.disabled=false; btn.textContent='💾 Lưu hôm nay';
+};
+
+// Add / remove list items
+window._addItem = async function(type){
+  const inp=document.getElementById(`input-${type}`);
+  const val=inp.value.trim();
+  if(!val||lists[type].includes(val)){inp.value='';return;}
+  lists[type].push(val); inp.value='';
+  await setDoc(listsRef, lists);
+};
+window._removeItem = async function(type,idx){
+  lists[type].splice(idx,1);
+  await setDoc(listsRef, lists);
+};
+
+// Enter key
+['cu','rau','main'].forEach(t=>{
+  document.getElementById(`input-${t}`).addEventListener('keydown',e=>{
+    if(e.key==='Enter') window._addItem(t);
+  });
+});
+
+// Toggle manage
+window._toggleManage = function(){
+  const panel=document.getElementById('managePanel');
+  const arrow=document.getElementById('manage-arrow');
   panel.classList.toggle('open');
-  arrow.textContent = panel.classList.contains('open') ? '▲' : '▼';
-}
+  arrow.textContent=panel.classList.contains('open')?'▲':'▼';
+};
 
-// ============ RUN ============
-init();
+// Boot
+async function boot(){
+  try{
+    await loadLists();
+    await loadTodayMeal();
+    watchPastDay('yesterday', yestKey);
+    watchPastDay('dayb4', dayb4Key);
+    setSyncStatus('connected','Đã kết nối · realtime 🔥');
+  } catch(e){
+    setSyncStatus('error','Không thể kết nối Firebase');
+    showToast('❌ Lỗi kết nối Firebase!',true);
+  }
+  document.getElementById('loadingOverlay').classList.add('hidden');
+}
+boot();
 </script>
 </body>
 </html>
