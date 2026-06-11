@@ -360,9 +360,20 @@ const DEFAULT_SUGGESTS = {
   ]
 };
 
-function dateKey(d){return d.toISOString().slice(0,10);}
+// ===== CỐ ĐỊNH THEO GIỜ VIỆT NAM (UTC+7) =====
+function getVNNow(){
+  const now=new Date();
+  const utcMs=now.getTime()+now.getTimezoneOffset()*60000;
+  return new Date(utcMs+7*3600000);
+}
+function dateKey(d){
+  const y=d.getFullYear();
+  const m=String(d.getMonth()+1).padStart(2,'0');
+  const day=String(d.getDate()).padStart(2,'0');
+  return `${y}-${m}-${day}`;
+}
 function formatDate(d){const days=['CN','Thứ 2','Thứ 3','Thứ 4','Thứ 5','Thứ 6','Thứ 7'];return `${days[d.getDay()]}, ${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()}`;}
-function offsetDate(n){const d=new Date();d.setDate(d.getDate()+n);return d;}
+function offsetDate(n){const d=getVNNow();d.setDate(d.getDate()+n);return d;}
 const todayDate=offsetDate(0),yestDate=offsetDate(-1),dayb4Date=offsetDate(-2);
 const todayKey=dateKey(todayDate),yestKey=dateKey(yestDate),dayb4Key=dateKey(dayb4Date);
 
